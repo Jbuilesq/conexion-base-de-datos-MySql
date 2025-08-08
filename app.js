@@ -1,11 +1,12 @@
 import {cargarCsv} from './employeeService.js';
 import db from './db.js';
 import express from 'express'
+const {uploadCSVBack} = require ('/helpers');
 
 const app = express();
 app.use(express.json());
 
-const archivo = 'empleados.csv';
+//const archivo = 'empleados.csv';
 
 // cargarCsv(archivo);
 
@@ -40,6 +41,22 @@ app.post('/employee', async (req ,result)=>{
         })
     });
 });
+
+app.post('/uploadCSV', (req,res)=>{
+    uploadCSVBack();
+    console.log("Funciono");
+    res.json({result:"DB Actualizada"});
+})
+
+
+
+
+
+
+
+
+
+
 
 app.listen(3000, () =>{
     console.log("Puerto corriendo por http://localhost:3000");
